@@ -26,15 +26,13 @@ namespace Desktop_navigation
             RIGHTUP = 0x00000010
         }
 
-        public static void scrollOn(ref DateTime prScroll)
+        public static void scrollOn()
         {
-            prScroll = DateTime.Now;
             mouse_event((int)MouseEventFlags.MIDDLEDOWN, 0, 0, 0, 0);
         }
 
-        public static void scrollOff(ref DateTime prScroll)
+        public static void scrollOff()
         {
-            prScroll = DateTime.Now;
             mouse_event((int)MouseEventFlags.MIDDLEUP, 0, 0, 0, 0);
         }
 

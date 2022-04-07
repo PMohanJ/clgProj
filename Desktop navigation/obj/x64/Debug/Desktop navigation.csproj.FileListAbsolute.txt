@@ -37,3 +37,42 @@ C:\Users\pmoha\source\repos\Desktop navigation\Desktop navigation\bin\x64\Debug\
 C:\Users\pmoha\source\repos\Desktop navigation\Desktop navigation\bin\x64\Debug\Python.Included.dll
 C:\Users\pmoha\source\repos\Desktop navigation\Desktop navigation\bin\x64\Debug\Python.Runtime.dll
 C:\Users\pmoha\source\repos\Desktop navigation\Desktop navigation\bin\x64\Debug\shape_predictor.dat
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\DlibDotNetNative.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\DlibDotNetNativeDnn.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\res10_300x300_ssd_iter_140000_fp16.caffemodel
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\shape_predictor.dat
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\deploy.prototxt.txt
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Desktop navigation.exe.config
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Desktop navigation.exe
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Desktop navigation.pdb
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\AForge.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\AForge.Video.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\AForge.Video.DirectShow.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\DlibDotNet.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Emgu.CV.Platform.NetStandard.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Emgu.CV.Bitmap.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\cvextern.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\opencv_videoio_ffmpeg455_64.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\concrt140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\msvcp140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\msvcp140_1.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\msvcp140_2.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\msvcp140_atomic_wait.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\msvcp140_codecvt_ids.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\vcruntime140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\vcruntime140_1.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Numpy.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Python.Deployment.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Python.Included.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Python.Runtime.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\System.Drawing.Common.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.AssemblyReference.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.SuggestedBindingRedirects.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.exe.config
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop_navigation.Form1.resources
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop_navigation.Properties.Resources.resources
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.GenerateResource.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.CoreCompileInputs.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.CopyComplete
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.exe
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.pdb

@@ -30,7 +30,7 @@ namespace Desktop_navigation
             InitializeComponent();
         }
 
-        Utilities util = new Utilities();  
+        Utilities util = new Utilities();
 
         Net _faceNet;
         ShapePredictor sp;
@@ -66,8 +66,7 @@ namespace Desktop_navigation
         bool frameReceived;
         bool detectButtonClicked = false;
         bool checkFps = false;
-
-        bool leftEyeMsg = true, bothEyeMsg = true, rightEyeMsg = true, laughMsg = true;
+        bool scrollMode = false;
 
         int count = 0, avg = 0;
         double fps = 0;
@@ -91,8 +90,11 @@ namespace Desktop_navigation
         DateTime caliberTime = DateTime.Now;
         DateTime curBlnk = DateTime.Now;
         DateTime prBlnk = DateTime.Now;
+        DateTime curScroll = DateTime.Now;
+        DateTime prScroll = DateTime.Now;
 
         int skipFrame = 0;
+        int mouthEARFrameCount = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -134,14 +136,14 @@ namespace Desktop_navigation
                 };
                 capture.ImageGrabbed += streamingForCaliberation;
                 capture.Start();
-                
+
                 caliberTime = DateTime.Now;
             }
         }
 
         private void streamingForCaliberation(object sender, EventArgs e)
         {
-            frameReceived = capture.Retrieve(frame); 
+            frameReceived = capture.Retrieve(frame);
             if (!frameReceived)
             {
                 msg = "Cam not working, please check";
@@ -219,8 +221,8 @@ namespace Desktop_navigation
                         mouthEAR = Utilities.mouthAspectRatio(mouthCoord);
 
                         EARDiff = (leftEyeEAR - rightEyeEAR) * 100;
-                        
-                        
+
+
                         Emgu.CV.Util.VectorOfPoint vre = new Emgu.CV.Util.VectorOfPoint();
                         vre.Push(rightEyeCoord);
                         rightEyeArea = CvInvoke.ContourArea(vre);
@@ -238,12 +240,11 @@ namespace Desktop_navigation
                         DateTime curr = DateTime.Now;
                         TimeSpan ts = curr.Subtract(caliberTime);
 
-                        if(ts.TotalSeconds < 5)
+                        if (ts.TotalSeconds < 5)
                         {
                             if (ts.TotalSeconds < 2)
                             {
                                 Utilities.writeText("both", ref frameToBeShown);
-                                bothEyeMsg = false;
                             }
                         }
                         else if (ts.TotalSeconds > 5 && ts.TotalSeconds < 10)
@@ -251,7 +252,6 @@ namespace Desktop_navigation
                             if (ts.TotalSeconds < 7)
                             {
                                 Utilities.writeText("left", ref frameToBeShown);
-                                leftEyeMsg = false;
                             }
                             else
                             {
@@ -268,7 +268,6 @@ namespace Desktop_navigation
                             if (ts.TotalSeconds < 14)
                             {
                                 Utilities.writeText("right", ref frameToBeShown);
-                                rightEyeMsg = false;
                             }
                             else
                             {
@@ -286,12 +285,12 @@ namespace Desktop_navigation
                             if (ts.TotalSeconds < 21)
                             {
                                 Utilities.writeText("laugh", ref frameToBeShown);
-                                laughMsg = false;
                             }
                             //mouthScroll.Add(mouthEAR);
                             else
                             {
                                 mouthScroll = np.append(mouthScroll, (NDarray)mouthEAR);
+                                Console.WriteLine($"mouthScroll ear : {mouthEAR}");
                             }
                         }
 
@@ -313,7 +312,7 @@ namespace Desktop_navigation
 
                 //Disposing the frames 
                 currentFrame.Dispose();
-
+                newImage.Dispose();
                 pictureBox1.Image = frameToBeShown;
                 if (caliberationFinished)
                     pictureBox1.Image = null;
@@ -322,6 +321,8 @@ namespace Desktop_navigation
 
 
         double lclickMean, rclickMean, mouthScrollMean, lclickAreaMean, rclickAreaMean;
+       
+
         private void StartBtn_Click(object sender, EventArgs e)
         {
             if (!caliberationFinished)
@@ -349,8 +350,8 @@ namespace Desktop_navigation
                 Console.WriteLine($"len of lclickArea: {lclickArea.shape}");
                 Console.WriteLine($"len of rclickArea: {rclickArea.shape}");
 
-                lclickMean = np.median(np.sort(lclick)) ;
-                rclickMean = np.median(np.sort(rclick)) ;
+                lclickMean = np.median(np.sort(lclick)) - 1;
+                rclickMean = np.median(np.sort(rclick)) + 1;
                 mouthScrollMean = np.median(np.sort(mouthScroll));
                 lclickAreaMean = np.median(np.sort(lclickArea));
                 rclickAreaMean = np.median(np.sort(rclickArea));
@@ -359,7 +360,7 @@ namespace Desktop_navigation
                 Console.WriteLine($"rclickMean: {rclickMean}");
                 Console.WriteLine($"lclickAreaMean: {lclickAreaMean}");
                 Console.WriteLine($"rclickAreaMean: {rclickAreaMean}");
-
+                Console.WriteLine($"mouthScrollearMean: {mouthScrollMean}");
                 captureStrm.ImageGrabbed += streaming;
                 captureStrm.Start();
 
@@ -390,123 +391,153 @@ namespace Desktop_navigation
             }
             else
             {
-                if (skipFrame % 2 == 0)
+
+                curBlnk = DateTime.Now;
+                curScroll = DateTime.Now;
+
+                currentFrame = frameStrm.ToImage<Bgr, byte>().Resize(300, 200, Inter.Cubic);
+                frameToBeShown = currentFrame.ToBitmap();
+
+                newImage = currentFrame.Clone();
+
+                frameHeight = newImage.Rows;
+                frameWidth = newImage.Cols;
+
+                using (blob = DnnInvoke.BlobFromImage(newImage, 1.0, size,
+                                                         meanForBlob, false, false))
+                    _faceNet.SetInput(blob, "data");
+
+                using (detection = _faceNet.Forward("detection_out"))
                 {
-                    curBlnk = DateTime.Now;
-                    currentFrame = frameStrm.ToImage<Bgr, byte>().Resize(300, 200, Inter.Cubic);
-                    frameToBeShown = currentFrame.ToBitmap();
+                    rows = detection.SizeOfDimension[2];
+                    cols = detection.SizeOfDimension[3];
 
-                    newImage = currentFrame.Clone();
-
-                    frameHeight = newImage.Rows;
-                    frameWidth = newImage.Cols;
-
-                    using (blob = DnnInvoke.BlobFromImage(newImage, 1.0, size,
-                                                             meanForBlob, false, false))
-                        _faceNet.SetInput(blob, "data");
-
-                    using (detection = _faceNet.Forward("detection_out"))
-                    {
-                        rows = detection.SizeOfDimension[2];
-                        cols = detection.SizeOfDimension[3];
-
-                        temp = new float[rows * cols];
-                        Marshal.Copy(detection.DataPointer, temp, 0, temp.Length);
-                    }
-
-                    if (listOfPoints != null)
-                        listOfPoints.Clear();
-                    for (int i = 0; i < rows; i++)
-                    {
-                        confidence = temp[i * cols + 2];
-
-                        if (confidence > 0.7)
-                        {
-                            x1 = (int)(temp[i * cols + 3] * frameWidth);
-                            y1 = (int)(temp[i * cols + 4] * frameHeight);
-                            x2 = (int)(temp[i * cols + 5] * frameWidth);
-                            y2 = (int)(temp[i * cols + 6] * frameHeight);
-
-                            using (dlibimg = frameToBeShown.ToArray2D<RgbPixel>())
-                            {
-                                //preparing coordinates of face
-                                faceCordinates = new DlibDotNet.Rectangle(x1, y1, x2, y2);
-
-                                // find the landmark points of the face
-                                using (shape = sp.Detect(dlibimg, faceCordinates))
-                                {
-
-                                    // Get the landmark points on the image
-                                    for (var j = 0; j < shape.Parts; j++)
-                                    {
-                                        var point = shape.GetPart((uint)j);
-                                        System.Drawing.Point xys = new System.Drawing.Point(point.X, point.Y);
-                                        listOfPoints.Add(xys);
-                                    }
-                                }
-                            }
-                            Utilities.drawLandmarks(listOfPoints, ref frameToBeShown);
-
-                            rightEyeCoord = listOfPoints.Skip(leftEyeStart).Take(6).ToArray();
-                            leftEyeCoord = listOfPoints.Skip(rightEyeStart).Take(6).ToArray();
-
-                            //The Aspect ratio of eyes to know the blinks of eyes 
-                            rightEyeEAR = Utilities.eyeAspectRation(rightEyeCoord);
-                            leftEyeEAR = Utilities.eyeAspectRation(leftEyeCoord);
-
-                            //The Aspect ratio of mouth to know the laugh to activate scroll
-                            mouthCoord = listOfPoints.Skip(48).Take(13).ToArray();
-                            mouthEAR = Utilities.mouthAspectRatio(mouthCoord);
-
-                            EARDiff = (leftEyeEAR - rightEyeEAR) * 100;
-
-
-                            Emgu.CV.Util.VectorOfPoint vre = new Emgu.CV.Util.VectorOfPoint();
-                            vre.Push(rightEyeCoord);
-                            rightEyeArea = CvInvoke.ContourArea(vre);
-
-                            Emgu.CV.Util.VectorOfPoint vle = new Emgu.CV.Util.VectorOfPoint();
-                            vle.Push(leftEyeCoord);
-                            leftEyeArea = CvInvoke.ContourArea(vle);
-
-
-                            if (!blinked)
-                            {
-                                if (EARDiff < lclickMean && leftEyeArea < lclickAreaMean)
-                                {
-                                    Console.WriteLine($"Left Click, EARDiff: {EARDiff}, leftEyeArea: {leftEyeArea}");
-                                    Clicking.leftClick(new Point(Cursor.Position.X, Cursor.Position.Y));
-                                   
-                                }
-                                else if (EARDiff > rclickMean && rightEyeArea < rclickAreaMean)
-                                {
-                                    Console.WriteLine($"Right Click, EARDiff: {EARDiff}, rightEyeArea: {rightEyeArea}");
-                                    Clicking.rightClick(new Point(Cursor.Position.X, Cursor.Position.Y));
-                                    
-                                }
-                                prBlnk = DateTime.Now;
-                                blinked = true;
-                            }
-                            else if (blinked)
-                            {
-                                // To have a time span of round 1 second from every click
-                                TimeSpan ts = curBlnk.Subtract(prBlnk);
-                                if (ts.TotalMilliseconds >= 800)
-                                    blinked = false;
-                            }
-
-                        }
-                    }
-
-                    //Disposing the frames //end of else
-                    currentFrame.Dispose();
-                    if (checkFps)
-                        Utilities.drawFps(fps, ref frameToBeShown);
-                    pictureBox1.Image = frameToBeShown;
+                    temp = new float[rows * cols];
+                    Marshal.Copy(detection.DataPointer, temp, 0, temp.Length);
                 }
-                skipFrame++;
+
+                if (listOfPoints != null)
+                    listOfPoints.Clear();
+                for (int i = 0; i < rows; i++)
+                {
+                    confidence = temp[i * cols + 2];
+
+                    if (confidence > 0.7)
+                    {
+                        x1 = (int)(temp[i * cols + 3] * frameWidth);
+                        y1 = (int)(temp[i * cols + 4] * frameHeight);
+                        x2 = (int)(temp[i * cols + 5] * frameWidth);
+                        y2 = (int)(temp[i * cols + 6] * frameHeight);
+
+                        using (dlibimg = frameToBeShown.ToArray2D<RgbPixel>())
+                        {
+                            //preparing coordinates of face
+                            faceCordinates = new DlibDotNet.Rectangle(x1, y1, x2, y2);
+
+                            // find the landmark points of the face
+                            using (shape = sp.Detect(dlibimg, faceCordinates))
+                            {
+
+                                // Get the landmark points on the image
+                                for (var j = 0; j < shape.Parts; j++)
+                                {
+                                    var point = shape.GetPart((uint)j);
+                                    System.Drawing.Point xys = new System.Drawing.Point(point.X, point.Y);
+                                    listOfPoints.Add(xys);
+                                }
+                            }
+                        }
+                        Utilities.drawLandmarks(listOfPoints, ref frameToBeShown);
+
+                        rightEyeCoord = listOfPoints.Skip(leftEyeStart).Take(6).ToArray();
+                        leftEyeCoord = listOfPoints.Skip(rightEyeStart).Take(6).ToArray();
+
+                        //The Aspect ratio of eyes to know the blinks of eyes 
+                        rightEyeEAR = Utilities.eyeAspectRation(rightEyeCoord);
+                        leftEyeEAR = Utilities.eyeAspectRation(leftEyeCoord);
+
+                        //The Aspect ratio of mouth to know the laugh to activate scroll
+                        mouthCoord = listOfPoints.Skip(48).Take(13).ToArray();
+                        mouthEAR = Utilities.mouthAspectRatio(mouthCoord);
+
+                        EARDiff = (leftEyeEAR - rightEyeEAR) * 100;
+
+
+                        Emgu.CV.Util.VectorOfPoint vre = new Emgu.CV.Util.VectorOfPoint();
+                        vre.Push(rightEyeCoord);
+                        rightEyeArea = CvInvoke.ContourArea(vre);
+
+                        Emgu.CV.Util.VectorOfPoint vle = new Emgu.CV.Util.VectorOfPoint();
+                        vle.Push(leftEyeCoord);
+                        leftEyeArea = CvInvoke.ContourArea(vle);
+
+                        if (mouthEAR <= 30)
+                        {
+                            mouthEARFrameCount++;
+                            if (mouthEARFrameCount >= 13)
+                            {
+                                TimeSpan ts = curScroll.Subtract(prScroll);
+                                if(ts.Seconds > 2)
+                                {
+                                    if (!scrollMode)
+                                    {
+                                        Clicking.scrollOn();
+                                        scrollMode = true;
+                                    }
+                                    else if (scrollMode)
+                                    {
+                                        Clicking.scrollOff();
+                                        scrollMode = false;
+                                    }
+                                    mouthEARFrameCount = 0;
+                                    prScroll = DateTime.Now;
+                                }
+                            }
+                        }
+                        else
+                            mouthEARFrameCount = 0;
+                        
+
+                        if (!blinked)
+                        {
+                            if (EARDiff < lclickMean && leftEyeArea < lclickAreaMean)
+                            {
+                                Console.WriteLine($"Left Click, EARDiff: {EARDiff}, leftEyeArea: {leftEyeArea}");
+                                Clicking.leftClick(new Point(Cursor.Position.X, Cursor.Position.Y));
+
+                            }
+                            else if (EARDiff > rclickMean && rightEyeArea < rclickAreaMean)
+                            {
+                                Console.WriteLine($"Right Click, EARDiff: {EARDiff}, rightEyeArea: {rightEyeArea}");
+                                Clicking.rightClick(new Point(Cursor.Position.X, Cursor.Position.Y));
+
+                            }
+                            prBlnk = DateTime.Now;
+                            blinked = true;
+                        }
+                        else if (blinked)
+                        {
+                            // To have a time span of round 1 second from every click
+                            TimeSpan ts = curBlnk.Subtract(prBlnk);
+                            if (ts.TotalMilliseconds >= 1000)
+                                blinked = false;
+                        }
+
+
+                       
+                    }
+                }
+
+                //Disposing the frames //end of else
+                currentFrame.Dispose();
+                newImage.Dispose();
+                if (checkFps)
+                    Utilities.drawFps(fps, ref frameToBeShown);
+                pictureBox1.Image = frameToBeShown;
+
             }
         }
+    
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

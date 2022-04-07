@@ -1443,20 +1443,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pmoha\\.nuget\\packages\\": {}
+    "C:\\Users\\Sharon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj",
+      "projectUniqueName": "C:\\Users\\Sharon\\source\\repos\\DesktopNavigation\\Desktop navigation\\Desktop navigation.csproj",
       "projectName": "Desktop navigation",
-      "projectPath": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj",
-      "packagesPath": "C:\\Users\\pmoha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\obj\\",
+      "projectPath": "C:\\Users\\Sharon\\source\\repos\\DesktopNavigation\\Desktop navigation\\Desktop navigation.csproj",
+      "packagesPath": "C:\\Users\\Sharon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sharon\\source\\repos\\DesktopNavigation\\Desktop navigation\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\pmoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sharon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
