@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj",
+        "projectName": "Desktop navigation",
+        "projectPath": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj",
+        "packagesPath": "C:\\Users\\pmoha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\pmoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "AForge.Video.DirectShow": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "DlibDotNet": {
+              "target": "Package",
+              "version": "[19.21.0.20220130, )"
+            },
+            "Emgu.CV": {
+              "target": "Package",
+              "version": "[4.5.5.4823, )"
+            },
+            "Emgu.CV.Bitmap": {
+              "target": "Package",
+              "version": "[4.5.5.4823, )"
+            },
+            "Emgu.CV.runtime.windows": {
+              "target": "Package",
+              "version": "[4.5.5.4823, )"
+            },
+            "Numpy": {
+              "target": "Package",
+              "version": "[3.7.1.28, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

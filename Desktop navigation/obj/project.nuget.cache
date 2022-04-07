@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "89NKJXEl54dItAbzBs+naqccAEzWCtaqGqezjnLRLhFPwEKvHgR09ojwAZLgYi6IxjFfCMjgqHDvSGY65ciVdA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pmoha\\source\\repos\\Desktop navigation\\Desktop navigation\\Desktop navigation.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pmoha\\.nuget\\packages\\aforge\\2.2.5\\aforge.2.2.5.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\aforge.video\\2.2.5\\aforge.video.2.2.5.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\aforge.video.directshow\\2.2.5\\aforge.video.directshow.2.2.5.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\dlibdotnet\\19.21.0.20220130\\dlibdotnet.19.21.0.20220130.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\emgu.cv\\4.5.5.4823\\emgu.cv.4.5.5.4823.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\emgu.cv.bitmap\\4.5.5.4823\\emgu.cv.bitmap.4.5.5.4823.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\emgu.cv.runtime.windows\\4.5.5.4823\\emgu.cv.runtime.windows.4.5.5.4823.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\emgu.runtime.windows.msvc.rt.x64\\19.29.30138\\emgu.runtime.windows.msvc.rt.x64.19.29.30138.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\emgu.runtime.windows.msvc.rt.x86\\19.29.30138\\emgu.runtime.windows.msvc.rt.x86.19.29.30138.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\numpy\\3.7.1.28\\numpy.3.7.1.28.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\python.deployment\\1.2.0\\python.deployment.1.2.0.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\python.included\\3.7.3.13\\python.included.3.7.3.13.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\pythonnet_netstandard_py37_win\\2.5.1\\pythonnet_netstandard_py37_win.2.5.1.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\system.drawing.primitives\\4.3.0\\system.drawing.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\system.runtime\\4.3.1\\system.runtime.4.3.1.nupkg.sha512",
+    "C:\\Users\\pmoha\\.nuget\\packages\\system.runtime.interopservices.runtimeinformation\\4.3.0\\system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}
