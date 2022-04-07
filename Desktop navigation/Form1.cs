@@ -95,6 +95,8 @@ namespace Desktop_navigation
 
         int skipFrame = 0;
         int mouthEARFrameCount = 0;
+
+        int currX = Cursor.Position.X, currY = Cursor.Position.Y;
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -448,6 +450,7 @@ namespace Desktop_navigation
                             }
                         }
                         Utilities.drawLandmarks(listOfPoints, ref frameToBeShown);
+                        Utilities.drawCircleAroundBasePoint(ref frameToBeShown);
 
                         rightEyeCoord = listOfPoints.Skip(leftEyeStart).Take(6).ToArray();
                         leftEyeCoord = listOfPoints.Skip(rightEyeStart).Take(6).ToArray();
@@ -462,6 +465,8 @@ namespace Desktop_navigation
 
                         EARDiff = (leftEyeEAR - rightEyeEAR) * 100;
 
+                        var noseBasee = listOfPoints[30];
+                        Utilities.drawLineBasepointToCurrentNosepoint(ref frameToBeShown, noseBasee);
 
                         Emgu.CV.Util.VectorOfPoint vre = new Emgu.CV.Util.VectorOfPoint();
                         vre.Push(rightEyeCoord);
@@ -471,7 +476,7 @@ namespace Desktop_navigation
                         vle.Push(leftEyeCoord);
                         leftEyeArea = CvInvoke.ContourArea(vle);
 
-                        if (mouthEAR <= 30)
+                        if (mouthEAR <= mouthScrollMean)
                         {
                             mouthEARFrameCount++;
                             if (mouthEARFrameCount >= 13)
@@ -482,11 +487,13 @@ namespace Desktop_navigation
                                     if (!scrollMode)
                                     {
                                         Clicking.scrollOn();
+                                        Console.WriteLine("Scroll ONNNN");
                                         scrollMode = true;
                                     }
                                     else if (scrollMode)
                                     {
                                         Clicking.scrollOff();
+                                        Console.WriteLine("Scroll OFFf");
                                         scrollMode = false;
                                     }
                                     mouthEARFrameCount = 0;
@@ -523,6 +530,7 @@ namespace Desktop_navigation
                                 blinked = false;
                         }
 
+                        checkForCursorMovement(noseBasee);
 
                        
                     }
@@ -537,7 +545,41 @@ namespace Desktop_navigation
 
             }
         }
-    
+
+        private void checkForCursorMovement(Point nosePoint)
+        {
+            //Checking if basePoint is not within reference area(circle)
+            if (Math.Pow((nosePoint.X - 150), 2) + Math.Pow((nosePoint.Y - 100), 2) > Math.Pow(15, 2))
+            {
+                NDarray a = findAngle(nosePoint);
+                if(a != null)
+                {
+                    currX = Cursor.Position.X;
+                    currY = Cursor.Position.Y;
+                    int coss = (int)(10 * np.cos(1.0 * a));
+                    int sinn = (int)(10 * np.sin(1.0 * a));
+                    if (nosePoint.X > 150)
+                    {
+                        Clicking.movePointerPosition(currX + coss, currY + sinn);
+                    }
+                    else
+                    {
+                        Clicking.movePointerPosition(currX - coss, currY - sinn);
+                    }
+                }
+            }
+        }
+
+        private NDarray findAngle(Point p)
+        {
+            if(p.X == 150)
+                return null;
+            double slope = (p.Y - 100) / (p.X - 150)*1.0;
+            NDarray angle = 1.0 * np.arctan((NDarray)slope);
+            //double angle = Math.Atan(slope) * 1.0;
+            return angle;
+        }
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

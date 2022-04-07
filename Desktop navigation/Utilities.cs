@@ -18,6 +18,31 @@ namespace Desktop_navigation
             LineAlignment = StringAlignment.Center
         };
 
+        public static void drawLineBasepointToCurrentNosepoint(ref Bitmap frameToBeShown, System.Drawing.Point p)
+        {
+            using (Graphics graphics = Graphics.FromImage(frameToBeShown))
+            {
+                using (Pen pen = new Pen(Color.Green))
+                {
+                    graphics.DrawLine(pen, 150, 100, p.X, p.Y);
+                }
+            }
+        }
+
+        public static void drawCircleAroundBasePoint(ref Bitmap frameToBeShown)
+        {
+            using (Graphics graphics = Graphics.FromImage(frameToBeShown))
+            {
+                using (Pen pen = new Pen(Color.Green))
+                {
+                    graphics.DrawEllipse(pen, 150, 100, 1, 1);
+                    graphics.DrawEllipse(pen, 150 - 15, 100 - 15, 30, 30);
+
+                }
+            }
+
+        }
+
         public static void writeText(String s, ref Bitmap frameToBeShown)
         {
             Rectangle rect = new Rectangle(0, 0, 280, 30);
