@@ -67,6 +67,8 @@ namespace Desktop_navigation
         bool detectButtonClicked = false;
         bool checkFps = false;
         bool scrollMode = false;
+        bool streamingForCaliberationStarted = false;
+        bool streamingStarted = false;
 
         int count = 0, avg = 0;
         double fps = 0;
@@ -97,9 +99,9 @@ namespace Desktop_navigation
         int mouthEARFrameCount = 0;
 
         int currX = Cursor.Position.X, currY = Cursor.Position.Y;
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
             const string configFile = "deploy.prototxt.txt";
             const string faceModel = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
             _faceNet = DnnInvoke.ReadNetFromCaffe(configFile, faceModel);
@@ -111,12 +113,8 @@ namespace Desktop_navigation
             comboBox1.SelectedIndex = 0;
         }
 
+
         bool caliberationButtonClicked = false;
-        /* List<double> lclick = new List<double>();
-         List<double> rclick = new List<double>();
-         List<double> mouthScroll = new List<double>();
-         List<double> lclickArea = new List<double>();
-         List<double> rclickArea = new List<double>();*/
 
         NDarray lclick = np.array<double>();
         NDarray rclick = np.array<double>();
@@ -125,6 +123,8 @@ namespace Desktop_navigation
         NDarray rclickArea = np.array<double>();
 
         double EARDiff, rightEyeArea, leftEyeArea;
+
+
         private void CaliberBtn_Click(object sender, EventArgs e)
         {
             if (!caliberationButtonClicked)
@@ -145,6 +145,7 @@ namespace Desktop_navigation
 
         private void streamingForCaliberation(object sender, EventArgs e)
         {
+            streamingForCaliberationStarted = true;
             frameReceived = capture.Retrieve(frame);
             if (!frameReceived)
             {
@@ -353,7 +354,7 @@ namespace Desktop_navigation
                 Console.WriteLine($"len of rclickArea: {rclickArea.shape}");
 
                 lclickMean = np.median(np.sort(lclick)) - 1;
-                rclickMean = np.median(np.sort(rclick)) + 1;
+                rclickMean = np.median(np.sort(rclick)) ;
                 mouthScrollMean = np.median(np.sort(mouthScroll));
                 lclickAreaMean = np.median(np.sort(lclickArea));
                 rclickAreaMean = np.median(np.sort(rclickArea));
@@ -372,6 +373,7 @@ namespace Desktop_navigation
 
         private void streaming(object sender, EventArgs e)
         {
+            streamingStarted = true;
             frameReceived = captureStrm.Retrieve(frameStrm);
 
             if (checkFps)
@@ -420,7 +422,7 @@ namespace Desktop_navigation
 
                 if (listOfPoints != null)
                     listOfPoints.Clear();
-                for (int i = 0; i < rows; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     confidence = temp[i * cols + 2];
 
@@ -532,7 +534,6 @@ namespace Desktop_navigation
 
                         checkForCursorMovement(noseBasee);
 
-                       
                     }
                 }
 
@@ -545,6 +546,7 @@ namespace Desktop_navigation
 
             }
         }
+
 
         private void checkForCursorMovement(Point nosePoint)
         {
@@ -568,7 +570,8 @@ namespace Desktop_navigation
                     }
                 }
             }
-        }
+        } 
+
 
         private NDarray findAngle(Point p)
         {
@@ -578,6 +581,24 @@ namespace Desktop_navigation
             NDarray angle = 1.0 * np.arctan((NDarray)slope);
             //double angle = Math.Atan(slope) * 1.0;
             return angle;
+        }
+
+
+        private void stopBtn_Click(object sender, EventArgs e)
+        {
+            if (streamingForCaliberationStarted)
+            {
+                capture.ImageGrabbed -= streamingForCaliberation;
+                if (capture != null && capture.IsOpened)
+                    capture.Stop();
+            }
+            if (streamingStarted)
+            {
+                captureStrm.ImageGrabbed -= streaming;
+                if (captureStrm != null && captureStrm.IsOpened)
+                    captureStrm.Stop();
+            }
+            pictureBox1.Image = null;
         }
 
 
