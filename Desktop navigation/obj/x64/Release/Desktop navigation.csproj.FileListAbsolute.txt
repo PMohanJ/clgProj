@@ -1,0 +1,41 @@
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\DlibDotNetNative.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\DlibDotNetNativeDnn.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\res10_300x300_ssd_iter_140000_fp16.caffemodel
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\shape_predictor.dat
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\deploy.prototxt.txt
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Desktop navigation.exe.config
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Desktop navigation.exe.manifest
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Desktop navigation.application
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Desktop navigation.exe
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\AForge.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\AForge.Video.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\AForge.Video.DirectShow.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\DlibDotNet.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Emgu.CV.Platform.NetStandard.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Emgu.CV.Bitmap.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\cvextern.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\opencv_videoio_ffmpeg455_64.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\concrt140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\msvcp140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\msvcp140_1.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\msvcp140_2.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\msvcp140_atomic_wait.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\msvcp140_codecvt_ids.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\vcruntime140.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\vcruntime140_1.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Numpy.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Python.Deployment.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Python.Included.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\Python.Runtime.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Release\System.Drawing.Common.dll
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.csproj.AssemblyReference.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.csproj.SuggestedBindingRedirects.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.exe.config
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop_navigation.Form1.resources
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop_navigation.Properties.Resources.resources
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.csproj.GenerateResource.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.csproj.CoreCompileInputs.cache
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.exe.manifest
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.application
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.csproj.CopyComplete
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Release\Desktop navigation.exe

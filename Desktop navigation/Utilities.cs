@@ -54,7 +54,7 @@ namespace Desktop_navigation
             else if (s == "right")
                 text = "Close Right eye";
             else if (s == "laugh")
-                text = "Give us a perfect laugh";
+                text = "Make a laugh sign";
 
             using (Graphics graphics = Graphics.FromImage(frameToBeShown))
             {

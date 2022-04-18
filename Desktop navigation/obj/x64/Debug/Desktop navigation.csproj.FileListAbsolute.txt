@@ -76,3 +76,7 @@ C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\
 C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.csproj.CopyComplete
 C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.exe
 C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.pdb
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Desktop navigation.exe.manifest
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\bin\x64\Debug\Desktop navigation.application
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.exe.manifest
+C:\Users\Sharon\source\repos\DesktopNavigation\Desktop navigation\obj\x64\Debug\Desktop navigation.application

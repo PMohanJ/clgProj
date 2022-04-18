@@ -114,22 +114,23 @@ namespace Desktop_navigation
         }
 
 
-        bool caliberationButtonClicked = false;
+        short caliberationButtonClicked = 0;
 
-        NDarray lclick = np.array<double>();
-        NDarray rclick = np.array<double>();
-        NDarray mouthScroll = np.array<double>();
-        NDarray lclickArea = np.array<double>();
-        NDarray rclickArea = np.array<double>();
+        NDarray lclick;
+        NDarray rclick;
+        NDarray mouthScroll;
+        NDarray lclickArea;
+        NDarray rclickArea;
 
         double EARDiff, rightEyeArea, leftEyeArea;
 
 
         private void CaliberBtn_Click(object sender, EventArgs e)
         {
-            if (!caliberationButtonClicked)
+            if (caliberationButtonClicked >= 0)
             {
-                caliberationButtonClicked = true;
+                caliberationFinished = false;
+                caliberationButtonClicked++;
                 var index = comboBox1.SelectedIndex;
                 VideoCapture.API captureApi = VideoCapture.API.DShow;
                 capture = new VideoCapture(index, captureApi)
@@ -140,6 +141,12 @@ namespace Desktop_navigation
                 capture.Start();
 
                 caliberTime = DateTime.Now;
+
+                lclick = np.array<double>();
+                rclick = np.array<double>();
+                mouthScroll = np.array<double>();
+                lclickArea = np.array<double>();
+                rclickArea = np.array<double>();
             }
         }
 
@@ -304,9 +311,10 @@ namespace Desktop_navigation
                             if (res == DialogResult.OK)
                             {
                                 caliberationFinished = true;
+                                capture.ImageGrabbed -= streamingForCaliberation;
                                 if (capture != null && capture.IsOpened)
                                     capture.Stop();
-                                capture.ImageGrabbed -= streamingForCaliberation;
+                                capture.Dispose();
 
                             }
                         }
@@ -330,7 +338,7 @@ namespace Desktop_navigation
         {
             if (!caliberationFinished)
                 MessageBox.Show("Please complete caliberation first", "Caution");
-            if (!detectButtonClicked && caliberationFinished)
+            if (!detectButtonClicked && caliberationButtonClicked >= 1)
             {
                 detectButtonClicked = true;
                 var index = comboBox1.SelectedIndex;
@@ -535,6 +543,7 @@ namespace Desktop_navigation
                         checkForCursorMovement(noseBasee);
 
                     }
+
                 }
 
                 //Disposing the frames //end of else
@@ -591,12 +600,14 @@ namespace Desktop_navigation
                 capture.ImageGrabbed -= streamingForCaliberation;
                 if (capture != null && capture.IsOpened)
                     capture.Stop();
+                capture.Dispose();
             }
             if (streamingStarted)
             {
                 captureStrm.ImageGrabbed -= streaming;
                 if (captureStrm != null && captureStrm.IsOpened)
                     captureStrm.Stop();
+                captureStrm.Dispose();
             }
             pictureBox1.Image = null;
         }
